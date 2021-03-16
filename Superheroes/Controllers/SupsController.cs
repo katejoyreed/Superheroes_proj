@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Superheroes.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Superheroes.Controllers
 {
     public class SupsController : Controller
     {
+        private ApplicationDbContext _context;
         // GET: SupsController
         public ActionResult Index()
         {
