@@ -25,14 +25,10 @@ namespace Superheroes.Controllers
         }
 
         // GET: SupsController/Details/5
-        public ActionResult Details()
+        public ActionResult Details(int ID)
         {
-            var supsDetails = _context.Sups.ToList();
-            foreach  (Sup sup in supsDetails)
-            {
-                Console.WriteLine(sup.Name, sup.AlterEgo, sup.PrimaryAbility, sup.SecondaryAbility, sup.Catchphrase);
-            }
-            return View(supsDetails);
+            Sup sup = _context.Sups.Find(ID);
+            return View(sup);
         }
 
         // GET: SupsController/Create
