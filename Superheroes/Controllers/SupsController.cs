@@ -79,16 +79,14 @@ namespace Superheroes.Controllers
         // POST: SupsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Sup sup)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var supToDelete = _context.Sups.Where(x => x.ID == sup.ID).FirstOrDefault();
+            _context.Sups.Remove(supToDelete);
+            _context.SaveChanges();
+            
+                return RedirectToAction("Index");
+            
         }
     }
 }
