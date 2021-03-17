@@ -59,16 +59,15 @@ namespace Superheroes.Controllers
         // POST: SupsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Sup sup)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var editSup = _context.Sups.Where(x => x.ID == sup.ID).FirstOrDefault();
+            _context.Sups.Remove(editSup);
+            _context.Sups.Add(sup);
+            _context.SaveChanges();
+                return RedirectToAction("Index");
+            
+            
         }
 
         // GET: SupsController/Delete/5
