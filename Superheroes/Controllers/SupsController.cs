@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Superheroes.Data;
+using Superheroes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,16 @@ namespace Superheroes.Controllers
     public class SupsController : Controller
     {
         private ApplicationDbContext _context;
+        public SupsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: SupsController
         public ActionResult Index()
         {
-            return View();
+            var allSups = _context.Sups;
+            return View(allSups);
         }
 
         // GET: SupsController/Details/5
@@ -32,10 +39,11 @@ namespace Superheroes.Controllers
         // POST: SupsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Sup sups)
         {
             try
             {
+
                 return RedirectToAction(nameof(Index));
             }
             catch
