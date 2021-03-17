@@ -46,15 +46,12 @@ namespace Superheroes.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Sup sups)
         {
-            try
-            {
+            _context.Sups.Add(sups);
+            _context.SaveChanges();
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                return RedirectToAction("Index");
+            
+            
         }
 
         // GET: SupsController/Edit/5
