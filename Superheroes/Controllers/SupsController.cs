@@ -29,6 +29,7 @@ namespace Superheroes.Controllers
         {
             Sup sup = _context.Sups.Find(ID);
             return View(sup);
+            
         }
 
         // GET: SupsController/Create
